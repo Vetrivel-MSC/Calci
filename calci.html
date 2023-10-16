@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Login and Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+    }
+    #calculator {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h2>User Login</h2>
+  <form id="loginForm" action="/login" method="post">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
+    <input type="submit" value="Login">
+  </form>
+
+  <div id="calculator">
+    <h2>Calculator</h2>
+    <input type="text" id="result" disabled><br><br>
+    <button onclick="clearResult()">C</button>
+    <button onclick="appendToResult('1')">1</button>
+    <button onclick="appendToResult('2')">2</button>
+    <button onclick="appendToResult('3')">3</button>
+    <br>
+    <button onclick="appendToResult('4')">4</button>
+    <button onclick="appendToResult('5')">5</button>
+    <button onclick="appendToResult('6')">6</button>
+    <button onclick="appendToResult('+')">+</button>
+    <br>
+    <button onclick="appendToResult('7')">7</button>
+    <button onclick="appendToResult('8')">8</button>
+    <button onclick="appendToResult('9')">9</button>
+    <button onclick="appendToResult('-')">-</button>
+    <br>
+    <button onclick="appendToResult('0')">0</button>
+    <button onclick="appendToResult('*')">*</button>
+    <button onclick="appendToResult('/')">/</button>
+    <button onclick="calculateResult()">=</button>
+  </div>
+
+  <script>
+    let currentResult = '';
+
+    function appendToResult(value) {
+      currentResult += value;
+      document.getElementById('result').value = currentResult;
+    }
+
+    function calculateResult() {
+      try {
+        currentResult = eval(currentResult);
+        document.getElementById('result').value = currentResult;
+      } catch (error) {
+        document.getElementById('result').value = 'Error';
+      }
+    }
+
+    function clearResult() {
+      currentResult = '';
+      document.getElementById('result').value = '';
+    }
+  </script>
+</body>
+</html>
